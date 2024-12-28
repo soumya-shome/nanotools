@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+<div class="row">
+    <!-- Resolution Selection Section -->
+    <div class="col-md-6 mb-3">
+        <div class="card shadow-sm">
+            <div class="card-header bg-light text-dark">
+                <h5 class="mb-0">Select Video Resolution</h5>
+            </div>
+            <div class="card-body">
+                <p>Choose your preferred resolution to download the video.</p>
+                <form action="{% url 'start_download' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="url" value="{{ video_url }}">
+                    <div class="mb-3">
+                        <label for="resolution" class="form-label">Choose Resolution:</label>
+                        <select name="resolution" id="resolution" class="form-select form-select-sm" required>
+                            {% for stream in available_resolutions %}
+                            <option value="{{ stream.resolution }}">
+                                Resolution: {{ stream.resolution }}, FPS: {{ stream.fps }}, File size: ~{{ stream.size }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mt-3">
+                        <button type="submit" class="btn btn-success btn-sm">Download</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

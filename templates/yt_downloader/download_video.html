@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+<div class="row">
+    <!-- Form Section -->
+    <div class="col-md-6 mb-3">
+        <div class="card shadow-sm">
+            <div class="card-header bg-light text-dark">
+                <h5 class="mb-0">YouTube Video Downloader</h5>
+            </div>
+            <div class="card-body">
+                <p>Enter a YouTube video URL to download the video.</p>
+                <form action="{% url 'download_video' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="videoUrl" class="form-label">YouTube Video URL:</label>
+                        <input type="text" id="videoUrl" name="url" class="form-control form-control-sm" required>
+                    </div>
+                    <div class="mt-3">
+                        <button type="submit" class="btn btn-success btn-sm">Download</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
