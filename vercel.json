@@ -1,8 +1,12 @@
 {
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "NanoTools/wsgi.py"
-    }
-  ]
+    "builds": [{
+        "src": "NanoTools/wsgi.py",
+        "use": "@vercel/python",
+    }],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "NanoTools/wsgi.py"
+        }
+    ]
 }
